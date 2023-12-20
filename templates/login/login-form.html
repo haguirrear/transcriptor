@@ -1,0 +1,21 @@
+<!-- <form action="/login" method="POST" hx-boost="true"> -->
+<form hx-post="/login" hx-swap="outerHTML">
+  <div class="flex-col items-stretch justify-start">
+    <div class="py-4">
+      <label class="block text-gray-500 py-1" for="username">Usuario</label>
+      <input class="block text-black rounded-md p-3 w-full" type="text" name="username" placeholder="Username" />
+    </div>
+    <div class="py-4">
+      <label class="block text-gray-500 py-1" for="psw">Password</label>
+      <input class="block text-black rounded-md p-3 w-full" type="password" name="psw" placeholder="Password" />
+      <div class="text-red-500 py-2">{{error}}</div>
+    </div>
+    <div class="py-4">
+      <button type="submit"
+        class="flex items-center justify-center relative rounded-md text-white bg-teal-600 hover:bg-teal-800 px-4 py-3 w-full">
+        Entrar
+        <img class="htmx-indicator w-8 absolute -right-14" src="/static/svg/oval.svg" alt="spinner" />
+      </button>
+    </div>
+  </div>
+</form>

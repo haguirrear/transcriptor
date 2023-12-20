@@ -4,20 +4,17 @@
         {% block head %}
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link href="{{ url_for('static', path='/css/main.css') }}" rel="stylesheet" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+            <script src="https://unpkg.com/htmx.org@1.9.9" integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX" crossorigin="anonymous"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+            <link href="{{ url_for( 'static', path='/css/main.css') }}" rel="stylesheet" />
+            <script src="https://kit.fontawesome.com/03598e7573.js" crossorigin="anonymous"></script>
             <title> {% block title %}{% endblock %} </title>
         {% endblock %}
     </head>
     <body >
-        {% include 'navbar.html' %}
-        <div class="px-5 bg-slate-100 flex items-center flex-col overflow-auto h-minus-footer"id="content">
             {% block content %}{% endblock %}
-        </div>
-        <div class="fixed inset-x-0 z-50 bottom-0 p-4" >
             {% block footer %}
-                &copy; Copyright 2023 by
-                <a href="http://domain.invalid/">you</a>.
             {% endblock %}
-        </div>
     </body>
 </html>

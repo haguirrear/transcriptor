@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "reveal-2"
+name = "transcriptor"
 version = "0.1.0"
 description = ""
 authors = ["Hector Aguirre <hector.aguirre.arista@gmail.com>"]
@@ -12,8 +12,14 @@ supabase = "^2.2.0"
 openai = "^1.3.7"
 uvicorn = "^0.24.0.post1"
 jinja2 = "^3.1.2"
-pytailwindcss = "^0.2.0"
+python-multipart = "^0.0.6"
+pydantic = "^2.5.2"
+pydantic-settings = "^2.1.0"
+itsdangerous = "^2.1.2"
 
+
+[tool.poetry.group.dev.dependencies]
+pytailwindcss = "^0.2.0"
 
 [build-system]
 requires = ["poetry-core"]

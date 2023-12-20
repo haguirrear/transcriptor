@@ -12,8 +12,13 @@ clean:
 	find . -name '__pycache__' -delete
 
 dev: ## Run server
-	uvicorn reveal.main:app --host 0.0.0.0 --port 8000 --reload
+	uvicorn transcriptor.main:app --host 0.0.0.0 --port 8000 --reload
+
+poetry-build-css: ## Build css with tailwind
+	poetry run tailwindcss -i styles/main.css -o static/css/main.css
 build-css: ## Build css with tailwind
+	tailwindcss -i styles/main.css -o static/css/main.css
+build-css-watch: ## Build css with tailwind
 	tailwindcss -i styles/main.css -o static/css/main.css --watch
 test: ## Run tests using docker compose
 	docker compose run --build --rm test ; \
