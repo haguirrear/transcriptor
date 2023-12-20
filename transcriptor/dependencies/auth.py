@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def redirect_to_login(request: Request) -> NoReturn:
-    login_url = str(request.url_for("login"))
+    login_url = "/login"
     raise HTTPException(
         status_code=307,
         headers={

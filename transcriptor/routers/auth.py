@@ -37,14 +37,14 @@ async def login_post(
     else:
         auth_response.user
         response = Response(status_code=204)
-        response.headers["HX-Location"] = str(request.url_for("index"))
+        response.headers["HX-Location"] = "/"
         return response
 
 
 @router.post("/logout", response_class=HTMLResponse)
 async def logout(request: Request):
     request.session.clear()
-    login_url = str(request.url_for("login"))
+    login_url = "/login"
     return Response(
         status_code=204, headers={"HX-Redirect": login_url, "Location": login_url}
     )
