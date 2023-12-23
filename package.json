@@ -1,0 +1,21 @@
+{
+  "name": "transcriptor",
+  "version": "1.0.0",
+  "main": "./templates/base.html",
+  "repository": "git@github.com:haguirrear/transcriptor.git",
+  "author": "Hector Aguirre <hector.aguirre.arista@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0"
+  },
+  "scripts": {
+    "build": "node ./build.mjs"
+  },
+  "dependencies": {
+    "pristinejs": "^1.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.10",
+    "typescript": "^5.3.3"
+  }
+}
