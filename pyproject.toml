@@ -16,6 +16,9 @@ python-multipart = "^0.0.6"
 pydantic = "^2.5.2"
 pydantic-settings = "^2.1.0"
 itsdangerous = "^2.1.2"
+requests = "^2.31.0"
+mercadopago = "^2.2.1"
+pytz = "^2023.3.post1"
 
 
 [tool.poetry.group.dev.dependencies]

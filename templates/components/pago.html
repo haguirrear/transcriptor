@@ -1,0 +1,23 @@
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<div x-data="getDataPago" x-init="initMercadoPago" id="wallet_container"></div>
+
+<script>
+    function getDataPago() {
+        return {
+            mp: null,
+            bricksBuilder: null,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            initMercadoPago() {
+                this.mp = new MercadoPago("{{ public_key }}");
+                this.bricksBuilder = mp.bricks();
+            },
+            initCheckout() {
+                this.bricksBuilder.create("wallet", "wallet_container", {
+                    initialization: {
+                        preferenceId: "{{ preference_id }}",
+                    },
+                });
+            },
+        };
+    }
+</script>

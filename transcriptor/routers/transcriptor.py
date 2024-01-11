@@ -1,10 +1,11 @@
 import logging
 from typing import Annotated
-from fastapi import APIRouter, Depends, Request, UploadFile
+from fastapi import APIRouter, Depends, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse
+from gotrue import User
 
 from transcriptor.common.templates import templates
-from transcriptor.dependencies.auth import auth_session
+from transcriptor.dependencies.auth import auth_session, auth_user
 from transcriptor.errors import ControlledException
 from transcriptor.services.auth import CustomSession
 from transcriptor.services.transcriptor import generate_transcription
@@ -15,14 +16,18 @@ router = APIRouter()
 
 @router.get("/", name="index", response_class=HTMLResponse)
 async def index(
-    request: Request, session: Annotated[CustomSession, Depends(auth_session)]
+    request: Request,
+    session: Annotated[CustomSession, Depends(auth_session)],
+    user: Annotated[User, Depends(auth_user)],
 ):
     return templates.TemplateResponse(
         "transcriptor/index.html",
         {
             "request": request,
-            "email": session["email"],
-            "full_name": session.get("full_name"),
+            "email": user.email,
+            "full_name": session["name"],
+            "picture": session["avatar_url"],
+            "menu": "transcribe",
         },
     )
 
@@ -43,3 +48,8 @@ async def upload_audio(
     return templates.TemplateResponse(
         "transcriptor/transcription.html", {"request": request, "transcription": trans}
     )
+
+
+@router.post("/openai")
+async def save_openai_key(request: Request, api_key: Annotated[str, Form]):
+    pass

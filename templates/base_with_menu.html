@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% block title %}Revol{% endblock %} 
+{% block head %}
+{{ super() }} 
+{% endblock %} 
+{% block content %}
+<div class="flex w-screen h-screen text-white">
+    {% include "transcriptor/menu.html" %}
+    {% block page %}
+    {% endblock %}
+</div>
+{% endblock %}

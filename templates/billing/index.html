@@ -1,0 +1,16 @@
+{% extends 'base_with_menu.html' %} {% block page %}
+<div class="bg-black w-full flex flex-col">
+    <div class="py-4 border-b border-white">
+        <h2 class="text-xl px-8">Configuración de Facturación</h2>
+    </div>
+    <div class="px-8">
+        <h3 class="text-xl font-semibold py-4">Paga sobre la marcha</h3>
+        <h4 class="text-lg py-3">Balance de crédito</h4>
+        <p class="text-3xl pb-4">{{ credits |default('0', true) }} PEN</p>
+        <button
+            class="flex items-center justify-center relative rounded-md text-white bg-teal-600 hover:bg-teal-800 px-4 py-3 w-full disabled:hover:bg-teal-600 max-w-md">
+            Comprar créditos
+        </button>
+    </div>
+</div>
+{% endblock %}

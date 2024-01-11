@@ -1,0 +1,83 @@
+<div x-data="getData()">
+  <a @click="openModal" class="rounded-lg bg-slate-600 py-2 px-4 block hover:bg-slate-400" href="#">
+    <img class="inline pr-2" src="../../static/svg/star.svg" alt="" />
+    Conectar con Chat GPT</a>
+
+  <div :class="{'hidden':!showModal}" class="hidden relative z-10 text-white">
+    <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+    <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+        <div
+          class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl transition-all w-full max-w-lg py-8 px-8 flex flex-col gap-4">
+          <div class="fixed right-0 top-0 p-3">
+            <img class="cursor-pointer p-3" @click="closeModal" src="../../static/svg/close.svg" alt="transcriptor" />
+          </div>
+          <div class="flex gap-2 justify-center items-center pb-4">
+            <img src="../../static/svg/openai.svg" alt="openai" />
+            <div class="h-12 object-fill flex items-center justify-center">
+              <img src="../../static/svg/dna.svg" alt="integration" />
+            </div>
+            <img src="../../static/svg/transcriptor.svg" alt="transcriptor" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg pb-2">Configura tu cuenta</h3>
+            <p class="text-sm text-gray-300">
+              Ingresa el API de tu cuenta de Open AI o selecciona uno de
+              nuestros planes para transcribir sin límites.
+            </p>
+          </div>
+          <form class="flex flex-col gap-2">
+            <label class="text-sm font-semibold" for="api-key">API Key</label>
+            <input class="block text-black rounded-md p-3 w-full" type="text" name="api-key"
+              placeholder="Ingresa código válido" />
+          </form>
+
+          <div class="sm:flex sm:gap-4 sm:pt-4">
+            <button @click="closeModal"
+              class="rounded-md text-white bg-gray-800 hover:bg-gray-500 px-4 py-3 w-full disabled:hover:bg-gray-500 border-white border">
+              Cancelar
+            </button>
+            <button
+              class="rounded-md text-white bg-teal-600 hover:bg-teal-800 px-4 py-3 w-full disabled:hover:bg-teal-600">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function getData() {
+    return {
+      showModal: false,
+      closeModal() {
+        this.showModal = false;
+      },
+      openModal() {
+        this.showModal = true;
+      },
+    };
+  }
+</script>

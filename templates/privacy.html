@@ -1,0 +1,132 @@
+{% extends "base.html" %} {% block title %}Revol{% endblock %} {% block head %}
+{{ super() }} {% endblock %} {% block content %}
+<style>
+    h1 {
+        color: white;
+        font-size: 2.25rem
+            /* 36px */
+        ;
+        line-height: 2.5rem
+            /* 40px */
+        ;
+        padding-bottom: 2.5rem;
+    }
+
+    h2 {
+        color: white;
+        font-size: 1.5rem
+            /* 24px */
+        ;
+        line-height: 2rem
+            /* 32px */
+        ;
+        padding-bottom: 2rem;
+    }
+
+    h3 {
+        color: white;
+        font-size: 1.25rem
+            /* 20px */
+        ;
+        line-height: 1.75rem
+            /* 28px */
+        ;
+        padding-bottom: 1.75rem;
+    }
+
+    p,
+    ul {
+        --tw-text-opacity: 1;
+        color: rgb(156 163 175 / var(--tw-text-opacity));
+        font-size: 1.125rem
+            /* 18px */
+        ;
+        line-height: 1.75rem
+            /* 28px */
+        ;
+        padding-bottom: 1.5rem;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: 1.5rem
+            /* 24px */
+        ;
+    }
+</style>
+<div class="bg-zinc-900 p-28 min-h-screen text-gray-400">
+    <div>
+        <h1>Política de Privacidad</h1>
+
+        <p>Fecha de entrada en vigor: 30/12/2023</p>
+
+        <section>
+            <h2>1. Información Recopilada y Uso:</h2>
+
+            <h3>1.1 Información Personal:</h3>
+            <p>
+                Cuando utilizas Transcriptor by Revol, podemos recopilar y procesar la
+                siguiente información personal:
+            </p>
+
+            <!-- Lista de información personal -->
+            <ul>
+                <li>
+                    Nombre: Recopilamos tu nombre para personalizar tu experiencia en la
+                    aplicación.
+                </li>
+                <li>
+                    Correo Electrónico: Recopilamos tu dirección de correo electrónico
+                    asociada a tu cuenta de Google para gestionar tu cuenta y enviarte
+                    información importante relacionada con el servicio.
+                </li>
+                <li>
+                    Avatar: Si decides vincular tu cuenta de Google, podemos acceder y
+                    mostrar tu avatar asociado a tu cuenta.
+                </li>
+            </ul>
+
+            <h3>1.2 Uso de la Información:</h3>
+            <p>Utilizamos la información recopilada para los siguientes fines:</p>
+
+            <!-- Lista de usos de la información -->
+            <ul>
+                <li>Personalizar tu experiencia en la aplicación.</li>
+                <li>Gestionar y mantener tu cuenta de usuario.</li>
+                <li>Enviar comunicaciones importantes relacionadas con el servicio.</li>
+                <li>Mejorar y optimizar nuestros servicios.</li>
+            </ul>
+        </section>
+
+        <!-- Secciones adicionales (Seguridad, Compartir Información, etc.) -->
+
+        <!-- Sección de Derechos de los Usuarios -->
+        <section>
+            <h2>2. Derechos de los Usuarios:</h2>
+            <p>
+                Puedes ejercer tus derechos de acceso, rectificación, cancelación y
+                oposición enviando una solicitud a [correo electrónico de contacto].
+            </p>
+        </section>
+
+        <!-- Sección de Cambios en la Política de Privacidad -->
+        <section>
+            <h2>3. Cambios en la Política de Privacidad:</h2>
+            <p>
+                Nos reservamos el derecho de actualizar esta política en cualquier
+                momento. Te notificaremos sobre cambios significativos a través de la
+                aplicación o por otros medios.
+            </p>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section>
+            <h2>4. Contacto:</h2>
+            <p>
+                Si tienes preguntas o inquietudes sobre esta política, por favor
+                contáctanos a través de [correo electrónico de contacto].
+            </p>
+        </section>
+    </div>
+</div>
+{% endblock %}

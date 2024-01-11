@@ -21,8 +21,15 @@
         <img class="htmx-indicator w-8 absolute -right-14" src="/static/svg/oval.svg" alt="spinner" />
       </button>
     </div>
+    <div>
+      <div
+        class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+        <p class="mx-4 mb-0 text-center font-semibold dark:text-white">O</p>
+      </div>
+    </div>
   </div>
 </form>
+{% include 'components/google.html' %}
 <script>
   function getData() {
     return {
