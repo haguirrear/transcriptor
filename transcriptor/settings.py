@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -13,6 +15,19 @@ class Settings(BaseSettings):
     MERCADO_PAGO_ACCESS_TOKEN: str | None = None
     MERCADO_PAGO_PUBLIC_KEY: str | None = None
     INVOICE_NAME: str = "THE REVOL"
+
+    SUPABASE_JWT_KEY: str = "insecure-key2"
+
+    DATABASE_DRIVER: Literal["asyncpg", "psycopg"] = "asyncpg"
+    DATABASE_USER: str
+    DATABASE_PSW: str
+    DATABASE_HOST: str
+    DATABASE_PORT: str
+    DATABASE_NAME: str
+
+    @property
+    def DATABASE_URL(self) -> str:
+        return f"postgresql+{self.DATABASE_DRIVER}://{self.DATABASE_USER}:{self.DATABASE_PSW}@{self.DATABASE_HOST}:{self.DATABASE_PORT}/{self.DATABASE_NAME}"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

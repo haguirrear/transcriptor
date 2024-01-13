@@ -1,4 +1,5 @@
 from typing import Any, Dict
+
 from supabase.client import create_client
 from transcriptor.session.base import SessionRepository
 from transcriptor.settings import settings

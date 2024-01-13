@@ -1,13 +1,15 @@
-import logging
 from typing import Annotated, Literal
+
+import structlog
 from fastapi import APIRouter, Depends, Path, Request
 from gotrue import User
+
+from transcriptor.common.templates import templates
+from transcriptor.dependencies.auth import auth_session, auth_user
 from transcriptor.services.auth import CustomSession
 from transcriptor.services.payments import create_preference
-from transcriptor.dependencies.auth import auth_session, auth_user
-from transcriptor.common.templates import templates
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 router = APIRouter(prefix="/payments")
 
@@ -34,7 +36,7 @@ async def billing_settings(
 async def create_checkout(
     request: Request, credits: int, user: Annotated[User, Depends(auth_user)]
 ):
-    preference = await create_preference()
+    _preference = await create_preference()
 
 
 @router.get("/{result}")

@@ -1,5 +1,6 @@
-import logging
 from typing import Annotated
+
+import structlog
 from fastapi import APIRouter, Depends, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse
 from gotrue import User
@@ -10,7 +11,7 @@ from transcriptor.errors import ControlledException
 from transcriptor.services.auth import CustomSession
 from transcriptor.services.transcriptor import generate_transcription
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 router = APIRouter()
 
 

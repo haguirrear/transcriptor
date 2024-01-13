@@ -1,15 +1,15 @@
-import logging
 from typing import Annotated, NoReturn
+
+import structlog
 from fastapi import Depends, HTTPException, Request
 from gotrue.types import User
-from supabase.client import Client, ClientOptions
-from transcriptor.session.storage import SessionStorage
+
+from supabase.client import Client, ClientOptions, create_client
 from transcriptor.services.auth import CustomSession
+from transcriptor.session.storage import SessionStorage
 from transcriptor.settings import settings
-from supabase.client import create_client
 
-
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 
 def redirect_to_login(request: Request) -> NoReturn:

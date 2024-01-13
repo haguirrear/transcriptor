@@ -1,19 +1,20 @@
 from datetime import datetime, timedelta
-from typing_extensions import TypedDict
-from uuid import uuid4
-import pytz
-import mercadopago
 from typing import List
+from uuid import uuid4
 
-import logging
-from transcriptor.models.payments import (
+import mercadopago
+import pytz
+import structlog
+from typing_extensions import TypedDict
+
+from transcriptor.dtos.payments import (
     MercadoPagoItem,
     MercadoPagoPayer,
     PreferencesResponse,
 )
 from transcriptor.settings import settings
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 sdk_mercado = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
 

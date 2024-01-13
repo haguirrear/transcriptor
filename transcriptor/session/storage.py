@@ -1,8 +1,8 @@
-import logging
+import structlog
 from fastapi import Request
 from gotrue import SyncSupportedStorage
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 
 class SessionStorage(SyncSupportedStorage):

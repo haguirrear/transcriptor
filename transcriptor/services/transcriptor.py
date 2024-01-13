@@ -1,8 +1,9 @@
 import io
+
 from fastapi import UploadFile
-from transcriptor.services.openai import openai_client
 
 from transcriptor.errors import ControlledException
+from transcriptor.services.openai import openai_client
 
 
 async def generate_transcription(audio_file: UploadFile):

@@ -1,21 +1,20 @@
-import logging
-from google.oauth2 import id_token
-from google.auth.transport import requests
 from typing import Annotated
-from fastapi import Depends, Form, HTTPException, Request, Response, status
+
+import structlog
+from fastapi import Depends, Form, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.routing import APIRouter
 from gotrue import Provider
 from gotrue.errors import AuthApiError, AuthInvalidCredentialsError
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from supabase.client import Client
-
-from transcriptor.settings import settings
-
 from transcriptor.common.templates import templates
+from transcriptor.db.session import get_db
 from transcriptor.dependencies.auth import supabase_client
-from transcriptor.services.auth import login_with_code, trigger_oauth_flow, login_user
+from transcriptor.services.auth import login_user, login_with_code, trigger_oauth_flow
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 router = APIRouter()
 
@@ -28,12 +27,13 @@ async def login(request: Request):
 @router.post("/login", response_class=HTMLResponse)
 async def login_post(
     request: Request,
+    db: Annotated[AsyncSession, Depends(get_db)],
     username: Annotated[str, Form()],
     psw: Annotated[str, Form()],
     supabase: Annotated[Client, Depends(supabase_client)],
 ):
     try:
-        auth_response = login_user(request, username, psw, supabase)
+        auth_response = await login_user(db, request, username, psw, supabase)
     except (AuthInvalidCredentialsError, AuthApiError) as e:
         return templates.TemplateResponse(
             "login/login-form.html", {"request": request, "error": e.message}
@@ -56,10 +56,13 @@ async def oauth_trigger(
 
 @router.get("/sso")
 async def login_with_sso(
-    request: Request, supabase: Annotated[Client, Depends(supabase_client)], code: str
+    request: Request,
+    supabase: Annotated[Client, Depends(supabase_client)],
+    db: Annotated[AsyncSession, Depends(get_db)],
+    code: str,
 ):
     try:
-        auth_response = login_with_code(request, supabase, code)
+        await login_with_code(db, request, supabase, code)
     except (AuthInvalidCredentialsError, AuthApiError) as e:
         return templates.TemplateResponse(
             "login/login.html", {"request": request, "error": e.message}

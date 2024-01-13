@@ -1,11 +1,12 @@
-from starlette.datastructures import URL
-import logging
 import uuid
+
+import structlog
+from starlette.datastructures import URL
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
+
 from transcriptor.session.base import SessionRepository
 
-from starlette.types import ASGIApp, Message, Scope, Receive, Send
-
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 
 class SupabaseSessionMiddleware:
