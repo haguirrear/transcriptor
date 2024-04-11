@@ -25,11 +25,18 @@ class Settings(BaseSettings):
     DATABASE_PORT: str
     DATABASE_NAME: str
 
+    REDIS_URL: str | None = None
+
+    SESSION_DURATION_DAYS: int = 10
+    MAX_REQUEST_PER_MINUTE: int = 5
+
     @property
     def DATABASE_URL(self) -> str:
         return f"postgresql+{self.DATABASE_DRIVER}://{self.DATABASE_USER}:{self.DATABASE_PSW}@{self.DATABASE_HOST}:{self.DATABASE_PORT}/{self.DATABASE_NAME}"
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
 
 
 settings = Settings()  # type: ignore

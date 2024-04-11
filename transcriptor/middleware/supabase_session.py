@@ -23,24 +23,25 @@ class SupabaseSessionMiddleware:
             return await self.app(scope, receive, send)
 
         supabase_session_id: str | None = scope["session"].get("supabase_session_id")
-        scope["supabase"] = {}
+        supabase_dict = {}
         if supabase_session_id:
-            db_resp = self.storage.get_session(supabase_session_id)
+            db_resp = await self.storage.get_session(supabase_session_id)
             logger.debug(f"Obtaining session {supabase_session_id}: {db_resp}")
             if db_resp:
-                scope["supabase"] = db_resp
+                supabase_dict = db_resp
         else:
             supabase_session_id = str(uuid.uuid4())
             scope["session"]["supabase_session_id"] = supabase_session_id
+        scope["supabase"] = {**supabase_dict}
 
         async def send_wrapper(message: Message) -> None:
             if message["type"] == "http.response.start":
                 supabase_value = scope.get("supabase")
-                if supabase_value:
+                if supabase_value and supabase_value != supabase_dict:
                     logger.debug(
                         f"Writting session {supabase_session_id}: {supabase_value}"
                     )
-                    self.storage.save_session(supabase_session_id, supabase_value)
+                    await self.storage.save_session(supabase_session_id, supabase_value)
 
             await send(message)
 

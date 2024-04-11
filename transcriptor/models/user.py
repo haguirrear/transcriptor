@@ -1,12 +1,15 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 import sqlalchemy as sa
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from transcriptor.models.mixins import DateAuditMixin, UUIDMixin
 
 from .base import Base
+
+if TYPE_CHECKING:
+    from .profile import ProfileModel
 
 
 class UserModel(Base, UUIDMixin, DateAuditMixin):
@@ -25,3 +28,5 @@ class UserModel(Base, UUIDMixin, DateAuditMixin):
     raw_app_meta_data: Mapped[Dict[str, Any] | None] = mapped_column()
     raw_user_meta_data: Mapped[Dict[str, Any] | None] = mapped_column()
     last_sign_in_at: Mapped[datetime | None] = mapped_column()
+
+    profile: Mapped[Optional["ProfileModel"]] = relationship(back_populates="user")

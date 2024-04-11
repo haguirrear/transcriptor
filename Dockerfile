@@ -18,7 +18,7 @@ FROM base as build-tailwind
 RUN poetry install --only dev --no-root
 COPY ./tailwind.config.js .
 COPY ./styles  ./styles
-COPY ./templates/ ./templates/
+COPY ./transcriptor/templates/ ./transcriptor/templates/
 COPY ./makefile .
 RUN make poetry-build-css
 
@@ -45,7 +45,7 @@ ENV PATH="/root/.local/bin:/app/.venv/bin:$PATH"
 # copy poetry install
 COPY --from=build-python /app/.venv /app/.venv
 COPY . ./
-COPY --from=build-tailwind /app/static/css/  ./static/css/
-COPY --from=build-node /app/static/js/base.js ./static/js/base.js
+COPY --from=build-tailwind /app/transcriptor/static/css/  ./transcriptor/static/css/
+COPY --from=build-node /app/transcriptor/static/js/base.js ./transcriptor/static/js/base.js
 EXPOSE 8000
 CMD ["./run.sh"]

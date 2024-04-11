@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["templates/**/*.html"],
+  content: ["transcriptor/templates/**/*.html"],
   theme: {
     fontFamily: {
       sans: [

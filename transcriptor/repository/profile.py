@@ -5,7 +5,7 @@ from transcriptor.models.profile import ProfileModel
 
 
 async def get_user_profile(session: AsyncSession, user_id: str):
-    query = select(ProfileModel).where(ProfileModel.user_id == user_id)
+    query = select(ProfileModel).where(ProfileModel.id == user_id)
 
     profile = (await session.scalars(query)).first()
     return profile
@@ -17,7 +17,7 @@ async def create_user_profile(
     full_name: str | None = None,
     avatar_url: str | None = None,
 ):
-    profile = ProfileModel(user_id=user_id, full_name=full_name, avatar_url=avatar_url)
+    profile = ProfileModel(id=user_id, full_name=full_name, avatar_url=avatar_url)
     session.add(profile)
     await session.flush()
     return profile

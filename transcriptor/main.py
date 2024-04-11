@@ -6,11 +6,13 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
-import transcriptor.logging
+import transcriptor.common.logging
 from transcriptor.db.engine import dispose_engine, init_engine
+from transcriptor.middleware.rate_limit import RateLimitMiddleware
 from transcriptor.middleware.supabase_session import SupabaseSessionMiddleware
+from transcriptor.redis.connection import pool
 from transcriptor.routers import auth, info, payments, transcriptor
-from transcriptor.session.postgres import SupabaseSessionPostgres
+from transcriptor.session.redis import SupabaseSessionRedis
 from transcriptor.settings import settings
 
 logger = structlog.get_logger(__name__)
@@ -32,11 +34,12 @@ app.add_middleware(
     allow_origins=["*"],
     expose_headers=["HX-Redirect", "HX-Location"],
 )
-app.add_middleware(SupabaseSessionMiddleware, storage=SupabaseSessionPostgres())
+app.add_middleware(SupabaseSessionMiddleware, storage=SupabaseSessionRedis(pool))
 app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
+app.add_middleware(RateLimitMiddleware, pool=pool)
 
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="transcriptor/static"), name="static")
 
 app.include_router(auth.router)
 app.include_router(transcriptor.router)

@@ -25,6 +25,8 @@ asyncpg = "^0.29.0"
 structlog = "^24.1.0"
 better-exceptions = "^0.3.3"
 rich = "^13.7.0"
+redis = {extras = ["hiredis"], version = "^5.0.1"}
+orjson = "^3.9.10"
 
 
 [tool.poetry.group.dev.dependencies]
