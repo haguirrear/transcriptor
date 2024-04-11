@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es2016"
+    ],
+    "target": "es2016",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "outDir": "dist",
+    "module": "es2016",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
