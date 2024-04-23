@@ -1,8 +1,8 @@
 import logging
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
+from transcriptor.middleware.cached_static import CacheControl, CachedStatic
 
 from transcriptor.routers import auth, transcriptor
 from transcriptor.settings import settings
@@ -19,7 +19,14 @@ app.add_middleware(
 )
 
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount(
+    "/static",
+    CachedStatic(
+        directory="static",
+        cache_control=CacheControl(max_age="2592000", public=True, inmutable=True),
+    ),
+    name="static",
+)
 
 app.include_router(auth.router)
 app.include_router(transcriptor.router)
