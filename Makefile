@@ -27,3 +27,5 @@ test: ## Run tests using docker compose
 	docker compose down --remove-orphans
 run:
 	uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --proxy-headers
+deploy:
+	fly deploy
