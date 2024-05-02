@@ -9,13 +9,20 @@
     "node": ">=20.0.0 <21.0.0"
   },
   "scripts": {
-    "build": "node ./build.mjs"
+    "build": "node ./frontend/build.mjs"
   },
   "dependencies": {
-    "pristinejs": "^1.1.0"
+    "@alpinejs/collapse": "^3.13.10",
+    "alpinejs": "^3.13.10",
+    "htmx.org": "^1.9.12",
+    "pristinejs": "^1.1.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
-    "esbuild": "^0.19.10",
+    "esbuild": "^0.19.12",
+    "supabase": "^1.163.2",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.3.3"
   }
 }

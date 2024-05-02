@@ -1,0 +1,44 @@
+.clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.uk-tab {
+  font-weight: 500;
+}
+
+.uk-tab>.uk-active {
+  background-color: #027a48;
+  border-radius: 0.75rem;
+  /* 12px */
+}
+
+.uk-tab>li {
+  padding: 0px;
+}
+
+.uk-tab>.uk-active>a {
+  color: white;
+  border-color: transparent;
+  border-width: 0px;
+  border-bottom: 0px;
+  padding: 0.5rem 1.5rem;
+}
+
+.uk-tab>*>a {
+  padding: 0.5rem 1.5rem;
+  text-transform: none;
+  border-bottom: 0px;
+  border-width: 0px;
+}
+
+.uk-tab>.uk-active>a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.uk-tab>*>a:hover {
+  color: black;
+  text-decoration: none;
+}

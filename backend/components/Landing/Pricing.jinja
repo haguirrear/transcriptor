@@ -1,0 +1,49 @@
+<div class="flex flex-col gap-8 items-center justify-start max-w-7xl pt-8">
+  <div class="bg-blue-100 text-blue-600 rounded-full py-1 px-4">
+    Precio
+  </div>
+  <h1 class="text-6xl font-semibold text-center">Transcribe sin límites</h1>
+  <p class="text-xl">Elige uno de nuestros planes y empieza a transcribir sin problemas</p>
+  <!-- <ul class="uk-tab-alt bg-gray-300 rounded-xl" uk-tab> -->
+  <!--   <li><a href="#">Mensual</a></li> -->
+  <!--   <li class="uk-active"><a href="#">Anual -40%</a></li> -->
+  <!-- </ul> -->
+
+  <Utils.TabContainer default="anual">
+    <Utils.Tab title="Mensual" tabId="mensual">
+      <div class="flex items-center justify-center max-w-7xl gap-10 pt-16">
+        {% set features1 = ['5 horas/mes', 'Restablecimiento de uso cada mes', 'Se factura una vez al año', 'Agrande
+        planes
+        anuales en cualquier momento'] %}
+        <Landing.PriceCard title="Lite" desc="Para equipos pequeños y uso individual" price="1" features={features1} />
+        {% set features2 = ['40 horas/mes', 'Restablecimiento de uso cada mes', 'Se factura una vez al año', 'Actualice
+        o
+        degrade otros planes
+        anuales en cualquier momento', 'Créditos extra con precios preferenciales'] %}
+        <Landing.PriceCard title="Pro" desc="Profesionales con alto uso de transcripción y funcionalidades avanzadas"
+          price="1" features={features2} popular={True} />
+        {% set features3 = ['Design system', 'Components', 'Lifetimes updates', 'Comercial license'] %}
+        <Landing.PriceCard title="Equipos" desc="Hermoso paquete de objetos 3D" price="1" features={features2}
+          by="+10$ per user per month" />
+      </div>
+    </Utils.Tab>
+    <Utils.Tab title="Anual -40%" tabId="anual">
+      <div class="flex items-center justify-center max-w-7xl gap-10 pt-16">
+        {% set features1 = ['5 horas/mes', 'Restablecimiento de uso cada mes', 'Se factura una vez al año', 'Agrande
+        planes
+        anuales en cualquier momento'] %}
+        <Landing.PriceCard title="Lite" desc="Para equipos pequeños y uso individual" price="5" features={features1} />
+        {% set features2 = ['40 horas/mes', 'Restablecimiento de uso cada mes', 'Se factura una vez al año', 'Actualice
+        o
+        degrade otros planes
+        anuales en cualquier momento', 'Créditos extra con precios preferenciales'] %}
+        <Landing.PriceCard title="Pro" desc="Profesionales con alto uso de transcripción y funcionalidades avanzadas"
+          price="17" features={features2} popular={True} />
+        {% set features3 = ['Design system', 'Components', 'Lifetimes updates', 'Comercial license'] %}
+        <Landing.PriceCard title="Equipos" desc="Hermoso paquete de objetos 3D" price="64" features={features2}
+          by="+10$ per user per month" />
+      </div>
+    </Utils.Tab>
+  </Utils.TabContainer>
+
+</div>
