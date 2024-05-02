@@ -1,4 +1,4 @@
-from typing import List, TypedDict
+from typing import TypedDict
 from fastapi import Request
 from gotrue.errors import AuthInvalidCredentialsError
 from gotrue.types import AuthResponse
@@ -44,17 +44,18 @@ def login_user(
     if not auth_response.user:
         raise AuthInvalidCredentialsError("Invalid Credentials")
 
-    profiles: List[Profile] = (
-        supabase.table("profiles")
-        .select("name,last_name")
-        .eq("id", auth_response.user.id)
-        .execute()
-        .data
-    )
+    # profiles: List[Profile] = (
+    #     supabase.table("profiles")
+    #     .select("name,last_name")
+    #     .eq("id", auth_response.user.id)
+    #     .execute()
+    #     .data
+    # )
+    # profile = None
+    #
+    # if profiles:
+    #     profile = profiles[0]
     profile = None
-
-    if profiles:
-        profile = profiles[0]
 
     set_session(request, auth_response, profile)
 
