@@ -1,0 +1,21 @@
+{#def default #}
+<div x-data="{
+    idSelected: '{{default}}',
+    tabs: new Map([['{{default}}', true]]),
+    selectTab(id) {
+      this.tabs.set(this.idSelected, false)
+      this.idSelected = id
+      this.tabs.set(id, true)
+    },
+    isSelected(id) {
+    return this.tabs.get(id) == true
+    }
+  }">
+  <div class="flex justify-center">
+    <div class="inline-flex items-baseline gap-0 rounded-xl bg-gray-200 text-gray-600 ">
+      {{content}}
+    </div>
+  </div>
+  <div class="tabContents">
+  </div>
+</div>

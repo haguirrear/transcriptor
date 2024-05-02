@@ -1,0 +1,19 @@
+{#def title #}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <link href="/static/styles/main.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/03598e7573.js" crossorigin="anonymous"></script>
+  <script defer src="/static/dist/base.js" type="module"></script>
+  {{ catalog.render_assets() }}
+</head>
+
+<body {{ attrs.render() }}>
+  {{ content }}
+</body>
+
+</html>

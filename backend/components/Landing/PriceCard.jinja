@@ -1,0 +1,38 @@
+{#def title, desc, price, features, by="por mes", popular=False #}
+
+{% if popular %}
+{% do attrs.set(class="h-[40rem] p-1 bg-gradient-to-b from-blue-500 via-pink-500 to-yellow-500 rounded-3xl")
+%}
+{% else %}
+{% do attrs.set(class="h-[34rem]") %}
+{% endif %}
+
+<div {{ attrs.render(class="w-[28rem] relative" ) }}>
+  {% if popular %}<img class="absolute -top-16 -right-40" src="static/svg/popular-arrow.svg"
+    alt="Arrow pointing to most popular price">{% endif %}
+
+  <div class="flex flex-col justify-between rounded-[1.3rem] bg-zinc-50 border-2 h-full p-6 ">
+    <div class="flex justify-between items-baseline pb-4">
+      <h5 class="text-2xl font-semibold">{{title}}</h5>
+      {% if popular %} <h5 class="font-semibold text-md">Popular</h5> {% endif %}
+    </div>
+    <p>{{desc}}</p>
+    <div class="h-8"></div>
+    <p class="text-black"><span class="text-gray-500 text-4xl">$</span><span class="text-4xl">{{price}}</span><span
+        class="text-sm text-gray-500">/ {{by}}</span></p>
+    <div class="py-8">
+      <div class="border-t border-gray-300"></div>
+    </div>
+    <ul class="list-image-[url(/static/svg/check-line.svg)] list-inside space-y-2">
+      {% for feat in features %}
+      <li>{{feat}}</li>
+      {% endfor %}
+    </ul>
+    <div class="py-8">
+      <div class="border-t border-gray-300"></div>
+    </div>
+    <button class="bg-transparent text-black font-semibold rounded-xl border-2 py-2 hover:bg-black hover:text-white">Get
+      lifetime access</button>
+  </div>
+
+</div>

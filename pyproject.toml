@@ -17,10 +17,10 @@ pydantic = "^2.5.2"
 pydantic-settings = "^2.1.0"
 itsdangerous = "^2.1.2"
 pydub = "^0.25.1"
+jinjax = "^0.35"
 
 
 [tool.poetry.group.dev.dependencies]
-pytailwindcss = "^0.2.0"
 ruff = "^0.4.1"
 
 [build-system]

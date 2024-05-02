@@ -12,40 +12,42 @@ RUN pip install --upgrade pip && curl -sSL https://install.python-poetry.org | p
 ENV PATH="/root/.local/bin:$PATH"
 WORKDIR /app
 
-COPY poetry.lock pyproject.toml ./
+COPY ./poetry.lock ./pyproject.toml ./
 
-FROM base as build-tailwind
-RUN poetry install --only dev --no-root
-COPY ./tailwind.config.js .
-COPY ./styles  ./styles
-COPY ./templates/ ./templates/
-COPY ./makefile .
-RUN make poetry-build-css
+FROM node:20-slim as build-css-js
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+WORKDIR /app
+
+RUN apt-get update && apt-get install make
+
+COPY pnpm-lock.yaml .
+COPY package.json .
+COPY tsconfig.json .
+COPY tailwind.config.js .
+COPY backend/components/ ./backend/components/
+COPY backend/templates/ ./backend/templates/
+COPY ./frontend/ ./frontend/
+COPY Makefile .
+
+RUN pnpm install --frozen-lockfile
+RUN make css
+RUN pnpm run build
 
 FROM base as build-python
 RUN poetry install --only main --no-root
-
-FROM node:20-slim as build-node
-WORKDIR /app
-
-COPY ./yarn.lock .
-COPY ./package.json .
-COPY ./tsconfig.json .
-COPY ./build.mjs .
-COPY ./frontend/ ./frontend/
-
-RUN yarn install
-RUN yarn build
-
 
 
 FROM python:3.11-slim as prod
 WORKDIR /app
 ENV PATH="/root/.local/bin:/app/.venv/bin:$PATH"
+
+RUN apt-get update && apt-get install make ffmpeg -y
 # copy poetry install
 COPY --from=build-python /app/.venv /app/.venv
 COPY . ./
-COPY --from=build-tailwind /app/static/css/  ./static/css/
-COPY --from=build-node /app/static/js/base.js ./static/js/base.js
+COPY --from=build-css-js /app/static/styles/main.css  ./static/styles/main.css
+COPY --from=build-css-js /app/static/dist/ ./static/dist/
 EXPOSE 8000
-CMD ["./run.sh"]
+CMD ["make", "run"]

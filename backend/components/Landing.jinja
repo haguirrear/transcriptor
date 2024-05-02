@@ -1,0 +1,65 @@
+{#css /static/styles/landing.css #}
+
+<BaseHtml title="Revol" class="font-sans relative">
+  <Landing.Header />
+  <div class="flex flex-col items-center">
+    <!-- How it works  -->
+    <Landing.HowWorks />
+    <!-- Pricing -->
+    <Landing.Pricing />
+  </div>
+  <!-- spacer -->
+  <div class="py-20"></div>
+  <!-- Banner revol team -->
+  <div class="relative w-full h-full text-white">
+    <img class="w-full h-full object-cover bg-gradient-to-b from-blue-300 to-pink-300 max-h-[48rem]"
+      src="../../static/img/rainbow3.png" alt="3D objects">
+    <div class="absolute inset-0 flex flex-col items-center justify-evenly  gap-4 text-center">
+      <div class="flex gap-2 pt-12 pt-8">
+        {% for i in range(5) %}
+        <img class="" src="static/svg/star.svg" alt="Star icon">
+        {% endfor %}
+      </div>
+      <h1 class="text-5xl max-w-4xl leading-snug font-medium">Más concentración, mayor automatización</h1>
+      <p class="text-xl max-w-3xl leading-normal">Nuestro objetivo es claro, brindar un servicio preciso y fácil
+        de usar. Simplificando el trabajo mediante inteligencia artificial y aumentar el retorno de inversión en horas
+        de trabajo.</p>
+      <div class="flex flex-col items-center gap-2">
+        <img class="rounded-full" src="static/img/revol-avatar.png" alt="Image of the revol team">
+        <h6 class="text-sm font-semibold">Revol Team</h6>
+        <p class="text-sm">Company</p>
+      </div>
+    </div>
+  </div>
+  <!-- FAQ -->
+  <div class="flex flex-col items-center pt-20">
+    <div class="flex flex-col items-center h-full max-w-3xl">
+      <div class="py-8">
+        <div class="bg-blue-100 text-blue-600 rounded-full py-1 px-4">
+          F.A.Q
+        </div>
+      </div>
+      <h1 class="text-7xl font-medium text-center py-6">Preguntas Frecuentes</h1>
+      <p class="text-lg text-center pb-20">Nos importa resolver tus dudas, por ello aquí dejamos algunas de las
+        preguntas más
+        frecuentes
+        de nuestros
+        usuarios</p>
+      <div class="flex flex-col items-center h-full gap-4 justify-start pb-40">
+        <Landing.Expandable title="¿Qué es Revol?">Revol es una compañia moderna que busca revolucionar la forma en la
+          que procesas el contenido</Landing.Expandable>
+        <Landing.Expandable title="¿Cómo puedo usar este producto?">You can use illustrations for both personal and
+          commercial projects. Example: client’s work, dribbble shots, personal websites, social media accounts,
+          advertising, physical items and so on.</Landing.Expandable>
+        <Landing.Expandable title="¿Cómo puedo transcribir en Revol?">Revol es una compañia moderna que busca
+          revolucionar la forma en la
+          que procesas el contenido</Landing.Expandable>
+        <Landing.Expandable title="¿Si no utilizo mis créditos, recibiré un reembolso?">Revol es una compañia moderna
+          que busca revolucionar la forma en la
+          que procesas el contenido</Landing.Expandable>
+      </div>
+
+      <p class="text-xs text-gray-400">&copy; 2024 Revol. All rights reserved.</p>
+    </div>
+  </div>>
+</BaseHtml>

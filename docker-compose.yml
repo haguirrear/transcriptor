@@ -2,6 +2,7 @@ services:
   app:
     build:
       target: "prod"
+      context: "."
     image: "transcriptor"
     ports:
       - 8000:8000
