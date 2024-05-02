@@ -37,7 +37,7 @@ async def login_post(
     else:
         auth_response.user
         response = Response(status_code=204)
-        response.headers["HX-Location"] = "/"
+        response.headers["HX-Location"] = "/app"
         return response
 
 

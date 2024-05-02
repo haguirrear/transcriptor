@@ -13,18 +13,18 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-# @router.get("/", name="index", response_class=HTMLResponse)
-# async def index(
-#     request: Request, session: Annotated[CustomSession, Depends(auth_session)]
-# ):
-#     return templates.TemplateResponse(
-#         "transcriptor/index.html",
-#         {
-#             "request": request,
-#             "email": session["email"],
-#             "full_name": session.get("full_name"),
-#         },
-#     )
+@router.get("/app", name="index", response_class=HTMLResponse)
+async def index(
+    request: Request, session: Annotated[CustomSession, Depends(auth_session)]
+):
+    return templates.TemplateResponse(
+        "transcriptor/index.html",
+        {
+            "request": request,
+            "email": session["email"],
+            "full_name": session.get("full_name"),
+        },
+    )
 
 
 @router.post("/upload", response_class=HTMLResponse)
