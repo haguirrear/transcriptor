@@ -1,4 +1,7 @@
-<!-- <form action="/login" method="POST" hx-boost="true"> -->
+{# def error="" #}
+{#js defer /static/dist/login.js, defer /static/dist/base.js #}
+
+<!-- hx-ext="alpine-morph" hx-swap="morph" -->
 <form hx-post="/login" hx-swap="outerHTML" x-data="loginData" x-ref="form" novalidate x-init="formInit()"
   @htmx:before-request="handleValidation" @input="inputHandler">
   <div class="flex-col items-stretch justify-start">
@@ -23,29 +26,3 @@
     </div>
   </div>
 </form>
-<script>
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("loginData", () => ({
-      loading: false,
-      pristine: null,
-      formInit() {
-        this.pristine = PristineInit(this.$refs.form, {
-          errorClass: "border-red-500",
-          errorTextClass: "text-red-500 pt-2",
-        });
-      },
-      handleValidation(event) {
-        const valid = this.pristine.validate();
-        console.log("Form valid:", valid);
-        if (!valid) {
-          event.preventDefault();
-        } else {
-          this.loading = true;
-        }
-      },
-      inputHandler() {
-        this.$refs.backendError.innerText = "";
-      },
-    }));
-  });
-</script>

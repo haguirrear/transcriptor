@@ -8,9 +8,15 @@ dependencies:
   '@alpinejs/collapse':
     specifier: ^3.13.10
     version: 3.13.10
+  '@alpinejs/morph':
+    specifier: ^3.13.10
+    version: 3.13.10
   alpinejs:
     specifier: ^3.13.10
     version: 3.13.10
+  htmx-ext-loading-states:
+    specifier: ^2.0.0
+    version: 2.0.0
   htmx.org:
     specifier: ^1.9.12
     version: 1.9.12
@@ -47,6 +53,10 @@ packages:
 
   /@alpinejs/collapse@3.13.10:
     resolution: {integrity: sha512-D4CRrwXdhuJdQX8gJvYBajMj90I85huf395eB8E+PfGy2QQZOxZxd92TWzaMLnMQlFHPkZ+chZmFuewjZ7y52Q==}
+    dev: false
+
+  /@alpinejs/morph@3.13.10:
+    resolution: {integrity: sha512-wnUCv2ESX4ZrW2XOhmydSMAMuNdJH9O1jhrV0xTb1OGFVSkj6OIoMpBPHYqUfc8i1y9KaRVRPeSe8wfXkm19mw==}
     dev: false
 
   /@babel/runtime@7.24.5:
@@ -655,6 +665,10 @@ packages:
     dependencies:
       function-bind: 1.1.2
     dev: true
+
+  /htmx-ext-loading-states@2.0.0:
+    resolution: {integrity: sha512-IpkYmfl+pzX06dsc4XlL6qozDQSxBCLhWjgBCVV3psRL9xfUPMuz19Dbh5RLdupHnUHWZZzb8IX5oQU5YbVbHQ==}
+    dev: false
 
   /htmx.org@1.9.12:
     resolution: {integrity: sha512-VZAohXyF7xPGS52IM8d1T1283y+X4D+Owf3qY1NZ9RuBypyu9l8cGsxUMAG5fEAb/DhT7rDoJ9Hpu5/HxFD3cw==}

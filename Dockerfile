@@ -27,7 +27,6 @@ COPY package.json .
 COPY tsconfig.json .
 COPY tailwind.config.js .
 COPY backend/components/ ./backend/components/
-COPY backend/templates/ ./backend/templates/
 COPY ./frontend/ ./frontend/
 COPY Makefile .
 

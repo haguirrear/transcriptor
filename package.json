@@ -1,7 +1,7 @@
 {
   "name": "transcriptor",
   "version": "1.0.0",
-  "main": "./templates/base.html",
+  "main": "./backend/components/BaseHtml.jinja",
   "repository": "git@github.com:haguirrear/transcriptor.git",
   "author": "Hector Aguirre <hector.aguirre.arista@gmail.com>",
   "license": "MIT",
@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.13.10",
+    "@alpinejs/morph": "^3.13.10",
     "alpinejs": "^3.13.10",
+    "htmx-ext-loading-states": "^2.0.0",
     "htmx.org": "^1.9.12",
     "pristinejs": "^1.1.0",
     "tailwind-merge": "^2.3.0"
