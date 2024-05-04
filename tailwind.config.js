@@ -2,7 +2,7 @@
 import animatePlugin from "tailwindcss-animate";
 
 export default {
-  content: ["backend/templates/**/*.html", "backend/components/**/*.jinja"],
+  content: ["backend/components/**/*.jinja"],
   theme: {
     fontFamily: {
       sans: [

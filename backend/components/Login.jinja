@@ -1,16 +1,12 @@
-{% extends "base.html" %}
-{% block title %}Revol - Entrar{% endblock %}
-{% block head %}
-    {{ super() }}
-{% endblock %}
-{% block content %}
-  <div class="flex h-screen bg-black font-sans">
+{# def error="" #}
 
+<BaseHtml title="Login" class="font-sans">
+  <div class="flex h-screen bg-black font-sans">
     <div class="flex-1 max-w-2xl min-w-fit text-white flex flex-col items-stretch justify-center gap-4 px-24 ">
       <h1 class="text-4xl text-center font-bold">AI Transcriptor</h1>
       <h4 class="text-sm text-center font-mono">Powered by Whisper</h4>
       <br><br>
-      {% include 'login/login-form.html' %}
+      <Login.Form error={error} />
     </div>
 
     <div class="flex-1 bg-red">
@@ -18,4 +14,4 @@
     </div>
 
   </div>
-{% endblock %}
+</BaseHtml>

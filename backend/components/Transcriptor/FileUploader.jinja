@@ -1,0 +1,44 @@
+{# def error="", transcription="" #}
+
+<div id="fileuploader" x-data="{files: null, progress:0, filename:'', load:false}"
+  class="flex-1 flex flex-col justify-center">
+  <form hx-encoding="multipart/form-data" hx-post="/upload" hx-swap="outerHTML" hx-target="#fileuploader"
+    @htmx:xhr:loadstart="load=true" class="flex flex-col justify-center items-center">
+    <input type="hidden" name="filename" x-model="filename" />
+    <label x-show="!files" class="cursor-pointer py-2 px-24 rounded-lg bg-teal-500 hover:bg-teal-700" for="file-upload">
+      <input id="file-upload" class="opacity-0 w-0 h-0" type="file" name="file" accept=".mp3,audio/*"
+        @change="fileChange($data, $event)" />
+      Elegir archivo
+    </label>
+    <!-- <button x-show="!files" type="button" class="py-2 px-24 rounded-lg bg-teal-500 hover:bg-teal-700"> -->
+    <!--     Elegir archivo -->
+    <!-- </button> -->
+    <span x-show="!!files" x-text="filename" class="py-4"></span>
+    <button x-show="!!files  && !load" type="submit" class="py-2 px-24 rounded-lg bg-teal-500 hover:bg-teal-700">
+      Iniciar Transcripción
+    </button>
+    <!-- <a class="py-8 text-teal-500" href="#">Elegir otro archivo</a> -->
+    <!-- <progress :class="!!files? '': 'hidden'" -->
+    <!--     @htmx:xhr:progress="value = $event.detail.loader/$event.detail.total * 100" id="progress" :value="progress" -->
+    <!--     max="100" class="py-4"> -->
+    <!--     0 -->
+    <!-- </progress> -->
+    <p class="py-2 text-sm text-red-500">{{error}}</p>
+    <p x-show="!files" class="py-4 text-sm text-gray-500">
+      *Beta disponible solo para archivos .mp3
+    </p>
+    <div class="htmx-indicator flex flex-col items-center gap-2 py-4">
+      <img class="h-16" src="/static/svg/bars.svg" alt="" />
+      <p class="">Generando la transcripción</p>
+    </div>
+  </form>
+  <script>
+    function fileChange(data, event) {
+      data.files = Object.values(event.target.files);
+      data.filename = data.files[0].name;
+    }
+  </script>
+</div>
+{% if transcription %}
+<p id="transcription" hx-swap-oob="outerHTML">{{ transcription }}</p>
+{% endif %}

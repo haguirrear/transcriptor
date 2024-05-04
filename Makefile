@@ -22,6 +22,8 @@ css: ## Build css with tailwind
 css-watch: ## Build css with tailwind
 	# tailwindcss -i styles/main.css -o static/css/main.css --watch
 	npx tailwindcss -i ./frontend/global.css -o ./static/styles/main.css --watch
+build:
+	pnpm run build
 test: ## Run tests using docker compose
 	docker compose run --build --rm test ; \
 	docker compose down --remove-orphans

@@ -1,9 +1,10 @@
 import logging
 from typing import Annotated
+
 from fastapi import APIRouter, Depends, Request, UploadFile
 from fastapi.responses import HTMLResponse
 
-from backend.app.common.templates import templates
+from backend.app.components import catalog
 from backend.app.dependencies.auth import auth_session
 from backend.app.errors import ControlledException
 from backend.app.services.auth import CustomSession
@@ -17,13 +18,16 @@ router = APIRouter()
 async def index(
     request: Request, session: Annotated[CustomSession, Depends(auth_session)]
 ):
-    return templates.TemplateResponse(
-        "transcriptor/index.html",
-        {
-            "request": request,
-            "email": session["email"],
-            "full_name": session.get("full_name"),
-        },
+    # return templates.TemplateResponse(
+    #     "transcriptor/index.html",
+    #     {
+    #         "request": request,
+    #         "email": session["email"],
+    #         "full_name": session.get("full_name"),
+    #     },
+    # )
+    return catalog.render(
+        "Transcriptor", email=session["email"], full_name=session.get("full_name")
     )
 
 
@@ -36,10 +40,12 @@ async def upload_audio(
     try:
         trans = await generate_transcription(file)
     except ControlledException as e:
-        return templates.TemplateResponse(
-            "transcriptor/file-uploader.html", {"request": request, "error": e.message}
-        )
+        # return templates.TemplateResponse(
+        #     "transcriptor/file-uploader.html", {"request": request, "error": e.message}
+        # )
+        return catalog.render("Transcriptor.FileUploader", error=e.message)
 
-    return templates.TemplateResponse(
-        "transcriptor/transcription.html", {"request": request, "transcription": trans}
-    )
+    # return templates.TemplateResponse(
+    #     "transcriptor/transcription.html", {"request": request, "transcription": trans}
+    # )
+    return catalog.render("Transcriptor.FileUploader", transcription=trans)
